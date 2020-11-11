@@ -1,0 +1,18 @@
+1/ Defining Constants ==> <name> equ <value>
+2/ Data Section syntaxe is ==> section .data ==> <variableName> <dataType> <initialValue>
+    The supported data types are :
+       * db 8-bit variable(s)
+       * dw 16-bit variable(s)
+       * dd 32-bit variable(s)
+       * dq 64-bit variable(s)
+       * ddq 128-bit variable(s) → integer
+       * dt 128-bit variable(s) → float
+    Some simple examples 
+        * bVar db 10 ; byte variable
+        * cVar db "H" ; single character
+        * strng db "Hello World" ; string
+        * wVar dw 5000 ; 16-bit variable
+        * dVar dd 50000 ; 32-bit variable
+        * arr dd 100, 200, 300 ; 3 element array
+        * flt1 dd 3.14159 ; 32-bit float
+        * qVar dq 1000000000 ; 64-bit variable
