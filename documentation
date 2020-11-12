@@ -16,3 +16,43 @@
         * arr dd 100, 200, 300 ; 3 element array
         * flt1 dd 3.14159 ; 32-bit float
         * qVar dq 1000000000 ; 64-bit variable
+3/ some instructions :
+    mov dst, src ==>  mov instruction copies the data from src to dst
+    lea dst, src ==> lea instruction loads the adress src to dst (exp : lea eax, [ecx+8])
+    * the diference between mov and lea 
+        lea eax, [ecx+8] && mov eax, [ecx+8] ==> lea will load the adress of ecx+8 to eax but mov will copy the value containing in ecx+8 and stock it in eax
+4/ add and sub (add/sub arg2 to arg1 nd stock it in arg1)
+    add arg1 arg2 (without comma)
+    sub arg1 arg2
+5/ jump instructions :
+    jmp Label ==> Jump to label
+    jmp *Operand ==> Jump to specified location
+    je​ / ​jz Label ==> Jump if equal/zero
+    jne​ / ​jnz Label ==> Jump if not equal/nonzero
+    some other jump instructions that you'll find in cheat :
+        (Jump if negative, Jump if not negative, Jump if greater (signed), Jump if greater or equal (signed), Jump if less (signed), Jump if less or equal, Jump if above/bellow (unsigned))
+6/ Conditional Move Instructions
+    for examle : cmove​ / ​cmovz S, D ==> Move if equal/zero (all of them are included on that cheat)
+7/ Procedure Call Instruction
+    call Label ==> Push return address and jump to label
+    call *Operand ==> Push return address and jump to specified location
+    leave ==> Set ​%rsp​ to %​ rbp​, then pop top of stack into ​%rbp
+    ret ==> Pop return address from stack and jump there
+8/ Arrays 
+    Arrays are stored in memory as contiguous blocks of data. Typically an array variable acts as a pointer to the first element of the array in memory. To access a given array element,
+    the index value is multiplied by the element size and added to the array pointer. For instance, if ​arr​ is an array of ​int​s,
+    the statement:  arr[i] = 3;
+    can be expressed in x86-64 as follows (assuming the address of ​arr​ is stored in​ %rax​ and the
+    index ​i​ is stored in ​%rcx​):
+    ​movq $3, (%rax, %rcx, 8)
+    (More information about arrays can be found on pages 232-241 of the textbook).
+9/ Register Usage
+    There are sixteen 64-bit registers in x86-64: 
+    ​%rax​, ​%rbx​, ​%rcx​, ​%rdx​, ​%rdi​, ​%rsi​, ​%rbp​, %rsp​, and ​%r8-r15​. Of these, ​%rax​, ​%rcx​, ​%rdx​, ​%rdi​, ​%rsi​, ​%rsp​, and ​%r8-r11​ 
+    are considered caller-save registers, meaning that they are not necessarily saved across function calls.
+    By convention, ​%rax​ is used to store a function’s return value, if it exists and is no more than 64 bits long.
+    (Larger return types like structs are returned using the stack.) Registers ​%rbx​, %rbp​, and ​%r12-r15​ are callee-save registers, 
+    meaning that they are saved across function calls.Register​​%rsp​isusedasthe​stackpointer,​ apointertothetopmostelementinthestack.
+    Additionally, ​%rdi​,​ %rsi​, ​%rdx​, ​%rcx​, ​%r8​, and ​%r9​ are used to pass the first six integer or pointer parameters to called functions.
+    Additional parameters (or large parameters such as structs passed by value) are passed on the stack.
+10/ Calling a Function
