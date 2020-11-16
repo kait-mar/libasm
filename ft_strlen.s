@@ -1,40 +1,13 @@
-          global    ft_strlen
+section     .text
+global    _ft_strlen
+_ft_strlen:
 
-                section     .text
-            push    rax
-            push    rsi
-ft_strlen:
-    mov         rax, 0
-
+    mov         r12, -1
+    jmp     if
     if:
-    mov         eax, [eax+8]
-    inc         rax
-    cmp         rsi, 0x0
-    jnz         if
-        ret
+        inc         r12
+        cmp        byte [rdi + r12], 0x0
+        jne         if
 
-
-
-
-
-section .text
-    [GLOBAL ft_strlen:]
-
-ft_strlen:
-    mov ebp, esp
-
-    mov edx, [ebp+8]    ; the string
-    xor eax, eax        ; loop counter
-
-    jmp if
-
-then:
-    inc eax
-
-if:
-    mov cl, [edx+eax]
-    cmp cl, 0x0
-    jne then
-
-end:
-    ret
+    mov         rax, r12
+ret

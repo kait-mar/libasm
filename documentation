@@ -56,3 +56,10 @@
     Additionally, ​%rdi​,​ %rsi​, ​%rdx​, ​%rcx​, ​%r8​, and ​%r9​ are used to pass the first six integer or pointer parameters to called functions.
     Additional parameters (or large parameters such as structs passed by value) are passed on the stack.
 10/ Calling a Function
+
+!!!!!!!!!!!!!!!! we push/pop a register if we want to save it's value, and restore it again (compiling ft_strdup and go call ft_strlen) !!!!!!!!!!!!!!!!!!!
+
+11/ incrementer
+    * INC AX ca permet d'incrémenter de 1 la valeur du registre AX 
+    * INC BYTE PTR[BX] : 
+    *
