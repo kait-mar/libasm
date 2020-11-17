@@ -63,3 +63,7 @@
     * INC AX ca permet d'incrémenter de 1 la valeur du registre AX 
     * INC BYTE PTR[BX] : 
     *
+
+12/ SYSCALL_WRITE 0x2000004
+    SYSCALL_EXIT  0x2000001
+    SYSCALL_READ  0x2000003
