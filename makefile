@@ -1,18 +1,23 @@
-FLAGS = -Wall -Wextra -Werror
+BUILD = ar rc
+NASM = nasm
+FLAGS = -f macho64
+
 NAME = libasm.a
-SRCO = ft_read.s ft_writ.s ft_strcpy.s ft_strcmp.s ft_strdup.a ft_strlen.s
+FILES = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
+OBJECTS = $(FILES:.s=.o)
 
-all : $(NAME)
-	    @echo "Building Library."
+all: $(NAME)
 
-$(NAME) :
-	    nasm $(FLAGS) -c $(SRCO)
-		    ar rc $(NAME) *.o
+$(NAME): $(OBJECTS)
+	$(BUILD) $(NAME) $(OBJECTS)
 
-clean :
-	    rm -rf *.o
+%.o: %.s
+	$(NASM) $(FLAGS) -o $@ $<
 
-fclean : clean
-	    rm -rf $(NAME)
+clean:
+	rm -rf *.o
 
-re : fclean all
+fclean: clean
+	rm -rf *.o *.a
+
+re: fclean all
